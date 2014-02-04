@@ -1,0 +1,35 @@
+<%- model_class = Circuit -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:input) %></th>
+      <th><%= model_class.human_attribute_name(:output) %></th>
+      <th><%= model_class.human_attribute_name(:required) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @circuits.each do |circuit| %>
+      <tr>
+        <td><%= link_to "Circuit " + circuit.id.to_s, circuit_path(circuit) %></td>
+        <td><%= link_to "Download Input", download_input_circuit_path(circuit) %></td>
+        <td><%= link_to "Download Output", download_output_circuit_path(circuit) %></td>
+        <td>
+        	<% if (circuit.required) %>
+        		<span style="color:green;">Required</span>
+        	<% else %>
+        		<span style="color:red;">Not Required</span>
+        	<% end %>
+        </td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_circuit_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,14 @@
+<div class ="well well-large">
+	<h3>
+		Add your circuit:
+	</h3>
+	<%= form_tag({controller: :circuits ,action: :upload}, multipart: true) do %>
+	  <%= file_field_tag 'input' %>
+	  <br><br>
+	  If your circuit meets the requirements of the project please check this:
+	  <br><br>
+	  Required? <%= check_box_tag 'required' %>
+		<br><br>
+	  <%= submit_tag "Add Circuit" %>
+	<% end %>
+</div>
